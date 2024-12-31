@@ -24,17 +24,11 @@ userSchema.methods.isValidPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-/*
-userSchema.methods.generateJWT = function () {
-  return jwt.sign({ email: this.email }), process.env.JWT_SECRET;
-};
-*/
-
 userSchema.methods.generateJWT = function () {
   return jwt.sign(
     { email: this.email }, // Payload
     process.env.JWT_SECRET, // Secret key
-    { expiresIn: "1h" } // Optional: Token expiration
+    { expiresIn: "12h" } // Optional: Token expiration
   );
 };
 
